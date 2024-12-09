@@ -1,0 +1,142 @@
+<html>
+    <head>
+      <title> Eind Opdracht Page 3</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+     </head>
+   <body>
+<style>
+
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    header {
+    background: linear-gradient(90deg, #950303, #d13333);
+    padding: 0.5rem 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+header nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: -1;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+}
+
+header nav ul li a:hover::before {
+    transform: scale(1);
+}
+
+header nav ul li a.active {
+    background-color: #fff;
+    color: #950303;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+    }
+    header nav ul li {
+        margin: 10px 0;
+    }
+}
+footer {
+    background-color: #950303;
+    color: #fefefe;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+    
+   body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    </style>
+
+<header class="topnav">
+  <nav>
+      <ul>
+          <li><a href="EindOpdracht.html">Page 1</a></li>
+          <li><a href="EindOpdrachtPage2.html">Page 2</a></li>
+          <li><a class="active" href="EindOpdrachtPage3.html">Page 3</a></li>
+          <li><a href="EindOpdrachtPage4.html">Page 4</a></li>
+      </ul>
+  </nav>
+</header>
+
+    <main>
+
+      <section>
+        <h2> Hoe ziet de game eruit?</h2>
+        <p><img src="https://static.wikia.nocookie.net/omori/images/8/89/Omori_Neutral_%28No_Background%29.gif/revision/latest?cb=20211217073238" width="140" height="140">
+          De game heeft 2 artstyles: Pixel En Hand Gemaakte art, je ziet het bijna overal. Bijvoorbeeld in sommige character portraits of in sommige cutscenes. Je kunt de hand gemaakt character portrait ook zien in sommige dialogue in de game zelf.
+          </p>
+      </section>
+
+
+      <section>
+        <h2> Hoe lang duurt het spel om af te maken?</h2>
+        <p><img src="https://static.wikia.nocookie.net/omori/images/e/eb/Sunny_Neutral_%28No_Background%29.gif/revision/latest?cb=20210825050257" width="140" height="140">
+          het spel duurt normaal 21.5 uur om af te maken, je kunt natuurlijk ook alle extras ontdekken om nog meer het spel te spelen. Bijvoorbeeld meer achievements halen, meer secrets zoeken, etc.
+        </p>
+      </section>
+
+      <section>
+        <h2> Wie heeft omori gemaakt? </h2>
+        <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAADLCAMAAAA1FdOFAAAARVBMVEX/////R0cruMH/5l3+sjj+sjkzub7/5lv+szb/R0X4S0v4tEL/R0n6sz84uLlAt7RFvLv/51nxwFj/5Vj/41z2tEb85l25GAuaAAADpUlEQVR4nO3bAXuaMBAGYG2gwYntXB3//6dOE1Yv5C4EuSDY73v2dExC8nKABux2OwRBXj+Hvcszht7nDp3dUD9+5ENuQxiTQ8M4N9nGdtXGfZSlcMzQwtibNLYwwqiedqIx9hblxQPBCCOMJY3t948C0sM+yjQjeaUtNBMSD9UDxlJHHEYYx43B1cZcenph5hE0qR2jmxYytjmdZxT/6YFRJzDqBEadwKgTGHUCo05g1MkLGblZaNGpOU2mkXv+WGZ48XnA+PBMI406Zu05jIsaufPxycbohpf7Vix9V5y3B9KeH1KN4oFFUFzNoNpx/8zWUq/J3Zm8kdAPjDDCmG90i22wep3GcDWMMMI4el27nwe6YnVGpi2MMMK4FuOwxaApc+eRZZS6Fb+dm2FkWs0ySgAYYbwn7xlAK/axSB2fHxh1AqNOYNQJjDqBUScw6gRGncCoExh18pBxpxAYYXwlY/8/UcSv+98UkmYFQ/PGkV3VMIq/0RCPzRd/AaPYOYwwDiN2pqGjaaW+eZdkbEsaxb6nGYvWEUYYBaPUzS8auuLT5z2Zt497fvtInYs7Mm4UU7k0JpXzn/qe/rXJA802VkmjqWH8McZ1nI/dLTanjl/G2gWMlRQvYl63Q2mQ5Y2dZIfx5Yzc+ejsTzY2/i/rLtlobW3s9ar/WsboKPX/4nT3GCJlPrspyJX0usX1j+mXs6i5RubAmvj4xsbjwDhItQHjFuq4BaPqsa4p5UxGuVTkaooM5xMxXq4vWNNfMLfPbmu9sZpr9Fdsf1377psqih+2GcbXLnh/PAZH2cW/H3zMNIYHMyamP2fGjDWMMBYwZs0pfp6RGT1tPHdh/GQoZbyQc8S3PRc2SpGNhnTYL8O4KqP0WUg/x/OMl8hoC9exM3y64y3139h4ti5u2e/5aZqxloxByAqbPgeO6fcevwEzT0sZm2cYmXna6uq4CuNJ1UhH6U8W5vlYZAyuerpBWEc3eafGRsVYT6+jJcjAWOnU0d8fMCCamuiYu5pTLaSjR9wtv8eCcaPPiJGZOcL4sFG8y16RUazjMcfYbMA4u44M2FO64B/ukZ1bDJ7zne6GjoL6ZA06w2hoBaWzEsZRY3CsM4xmA8Yt1HEp46y46YXtJm+3pHFK7WhgDAOjTjZjtKb/xZ/87AYpBvzO+0PvjDAOA6NOChr55o/EG7NGhRFGGGFUi7/dgRFGGBczxtvo4UYysSQwZgwK4+N5QSOCIKn8A2bItESb1ZQLAAAAAElFTkSuQmCC" width="140" height="140">
+          Omori is gemaakt door OMOCAT. Naast OMORI maakt OMOCAT ook andere dingen en heeft ze ook voor andere games gewerkt zoals Undertale en Namco High.
+        </p>
+        </section>
+
+        <section>
+          <h2>OMORI merch</h2>
+          <p><img src="https://static.wikia.nocookie.net/omori/images/9/99/Basil_%28Neutral%29.gif/revision/latest?cb=20220617070142" width="140" height="140">
+           Omori heeft ook merch, zoals shirts, sleutelhangers, knuffels, etc. Je kunt het allemaal vinden bij https://www.omocat-shop.com/collections/omori tot deze dag maakt OMOCAT nogsteeds omori merch, en het is allemaal heel cool.
+          </p>
+        </section>
+
+        <footer>
+          <p>&copy; Een project door Hussam gemaakt.</p>
+        </footer>
+    </main>
+    </body>
+    </html>

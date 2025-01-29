@@ -13,9 +13,7 @@ void draw()
   background(190);
   image(mouseImage, 100, 100);
   image(catImage, 200, 100);
-}
-
-int startTime = 0;
+  int startTime = 0;
 
 startTime = millis();
 
@@ -29,7 +27,10 @@ float x = mouseX - mouseImage.width / 2;
 float y = mouseY - mouseImage.height / 2;
 image(mouseImage, x, y);
 
-this.x = x
+this.x = x;
+
+}
+
 
   class Circle
 {

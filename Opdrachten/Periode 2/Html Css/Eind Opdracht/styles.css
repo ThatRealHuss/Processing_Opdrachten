@@ -65,3 +65,16 @@ body {
         background-color: #000000; /* Even darker green when clicked */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Smaller shadow on click */
       }
+      .container {
+        min-height: 100vh;    
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .footer {
+        margin-top: auto;
+    }
+    <div class="container">
+    <!-- put content here -->
+    <div class="footer">This is the footer!</div>
+</div>

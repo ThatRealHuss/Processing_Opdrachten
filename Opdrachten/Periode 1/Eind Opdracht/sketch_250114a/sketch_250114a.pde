@@ -1,138 +1,114 @@
-PImage mouseImage;
-PImage catImage;
+int frogX, frogY, frogSize;
+int laneHeight;
+int[] carX, carSpeed;
+int numCars = 3;
+int numLanes = 5;
+boolean gameOver = false;
+int score = 0;
 
-void setup()
-{
-  size(1280, 720);
+void setup() {
+  size(400, 600);
+  frogSize = 20;
+  laneHeight = height / (numLanes + 2); // +2 for start and end zones
+  frogX = width / 2;
+  frogY = height - laneHeight / 2;
 
-  mouseImage = loadImage("Mouse.png");
-  catImage = loadImage("Cat.png");
-}
-void draw()
-{
-  background(190);
-  image(mouseImage, 100, 100);
-  image(catImage, 200, 100);
-  int startTime = 0;
+  carX = new int[numCars * numLanes];
+  carSpeed = new int[numCars * numLanes];
 
-startTime = millis();
-
-fill(255);
-textSize(128);
-textAlign(CENTER);
-String currentTime = str((millis() - startTime) / 1000);
-text(currentTime, width / 2, 120);
-
-float x = mouseX - mouseImage.width / 2;
-float y = mouseY - mouseImage.height / 2;
-image(mouseImage, x, y);
-
-this.x = x;
-
-}
-
-
-  class Circle
-{
-  float x = 0;
-  float y = 0;
-  float radius = 1;
-
-  void SetPosition(float x, float y)
-  {
-    this.x = x;
-    this.y = y;
-  }
-
-  void SetRadius(float radius)
-  {
-    this.radius = radius;
-  }
-
-  boolean Overlaps(Circle other)
-  {
-    float dx = x - other.x;
-    float dy = y - other.y;
-    float dr = radius + other.radius;
-    return dx*dx + dy*dy < dr*dr;
-  }
-}
-float dx = x - other.x;
-float dy = y - other.y;
-
-float dr = radius + other.radius;
-
-return dx*dx + dy*dy < dr*dr;
-
-Circle playerCircle = new Circle();
-Circle catCircle = new Circle();
-
-playerCircle.SetPosition(width / 2, height / 2);
-playerCircle.SetRadius(32);
-
-catCircle.SetPosition(200, 100);
-catCircle.SetRadius(32);
-
-void draw()
-{
-  GameLogic();
-  Render();
-}
-
-void GameLogic()
-{
-  playerCircle.SetPosition(mouseX, mouseY);
-
-  if (catCircle.Overlaps(playerCircle))
-  {
-    startTime = millis();
+  // Initialize cars
+  for (int i = 0; i < numLanes; i++) {
+    for (int j = 0; j < numCars; j++) {
+      carX[i * numCars + j] = int(random(width));
+      carSpeed[i * numCars + j] = int(random(1, 4)) * (i % 2 == 0 ? 1 : -1); // Alternate direction
+    }
   }
 }
 
-background(190);
+void draw() {
+  background(100);
 
-// Render images
-// Cat
-float catX = catCircle.x - catImage.width / 2;
-float catY = catCircle.y - catImage.height / 2;
-image(catImage, catX, catY);
-
-// Mouse
-float playerX = mouseX - mouseImage.width / 2;
-float playerY = mouseY - mouseImage.height / 2;
-image(mouseImage, playerX, playerY);
-
-// Render debug
-// Draw cat debug circle
-noStroke();
-fill(0, 0, 255, 125);
-circle(catCircle.x, catCircle.y, catCircle.radius*2);
-
-// Draw mouse debug circle
-noStroke();
-fill(255, 0, 0, 125);
-circle(playerCircle.x, playerCircle.y, playerCircle.radius*2);
-
-// Draw text
-fill(255);
-textSize(128);
-textAlign(CENTER);
-String currentTime = str((millis() - startTime) / 1000);
-text(currentTime, width / 2, 120);
-
-void GameLogic()
-{
-  // Player movement
-  playerCircle.SetPosition(mouseX, mouseY);
-
-  // Cat movement
-  float dx = playerCircle.x - catCircle.x;
-  float dy = playerCircle.y - catCircle.y;
-
-  float len = sqrt(dx*dx + dy*dy);
-
-  if (len > 0)
-  {
-    dx /= len;
-    dy /= len;
+  // Draw lanes
+  for (int i = 1; i <= numLanes; i++) {
+    fill(50);
+    rect(0, i * laneHeight, width, laneHeight);
   }
+
+  // Draw start and end zones
+  fill(0, 200, 0);
+  rect(0, 0, width, laneHeight);
+  rect(0, height - laneHeight, width, laneHeight);
+
+  // Draw cars
+  fill(255, 0, 0);
+  for (int i = 0; i < numLanes; i++) {
+    for (int j = 0; j < numCars; j++) {
+      rect(carX[i * numCars + j], (i + 1) * laneHeight + laneHeight / 4, 40, laneHeight / 2);
+      carX[i * numCars + j] += carSpeed[i * numCars + j];
+
+      // Wrap cars around
+      if (carX[i * numCars + j] > width) {
+        carX[i * numCars + j] = -40;
+      } else if (carX[i * numCars + j] < -40) {
+        carX[i * numCars + j] = width;
+      }
+    }
+  }
+
+  // Draw frog
+  fill(0, 255, 0);
+  ellipse(frogX, frogY, frogSize, frogSize);
+
+  // Collision detection
+  for (int i = 0; i < numLanes; i++) {
+    for (int j = 0; j < numCars; j++) {
+      if (dist(frogX, frogY, carX[i * numCars + j] + 20, (i + 1) * laneHeight + laneHeight / 2) < frogSize / 2 + 20) {
+        gameOver = true;
+      }
+    }
+  }
+
+  // Check for win
+  if (frogY < laneHeight) {
+    score++;
+    resetFrog();
+  }
+
+  // Game Over
+  if (gameOver) {
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    text("Game Over!\nScore: " + score, width / 2, height / 2);
+    noLoop();
+  }
+
+  // Display Score
+  textSize(16);
+  textAlign(LEFT, TOP);
+  fill(255);
+  text("Score: " + score, 10, 10);
+}
+
+void keyPressed() {
+  if (!gameOver) {
+    if (keyCode == UP) {
+      frogY -= laneHeight;
+    } else if (keyCode == DOWN) {
+      frogY += laneHeight;
+    } else if (keyCode == LEFT) {
+      frogX -= laneHeight;
+    } else if (keyCode == RIGHT) {
+      frogX += laneHeight;
+    }
+
+    // Keep frog within bounds
+    frogX = constrain(frogX, frogSize / 2, width - frogSize / 2);
+    frogY = constrain(frogY, frogSize / 2, height - laneHeight / 2);
+  }
+}
+
+void resetFrog() {
+  frogX = width / 2;
+  frogY = height - laneHeight / 2;
+}

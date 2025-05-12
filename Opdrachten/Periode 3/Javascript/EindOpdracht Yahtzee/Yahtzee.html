@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahtzee Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Yahtzee Game</h1>
+        <div id="scoreboard">
+            <h2>Scoreboard</h2>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>Ones</td>
+                    <td id="ones-score">0</td>
+                </tr>
+                <tr>
+                    <td>Twos</td>
+                    <td id="twos-score">0</td>
+                </tr>
+                <!-- Add more rows for other categories -->
+            </table>
+        </div>
+        <div id="dice-container">
+            <button id="roll-dice">Roll Dice</button>
+            <div id="dice">
+                <!-- Dice will be displayed here -->
+            </div>
+        </div>
+    </div>
+    <script src="yahtzeescript.js"></script>
+</body>
+</html>

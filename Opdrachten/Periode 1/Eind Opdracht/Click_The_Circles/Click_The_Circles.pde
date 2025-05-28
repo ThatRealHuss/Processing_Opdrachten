@@ -1,10 +1,11 @@
-float dotX[] = new float[2];
-float dotY[] = new float[2];
+float dotX[] = new float[8];
+float dotY[] = new float[5];
 float dotSize = 20;
 float speed = 3;
 int score = 0;
 
 void setup() {
+  println(dotX.length);
   size(400, 400);
   newDot();
   textSize(24); // Increased text size for the score
@@ -13,7 +14,7 @@ void setup() {
 void draw() {
   background(220);
 
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < dotX.length; i++) {
     dotX[i] += random(-speed, speed);
     dotY[i] += random(-speed, speed);
 
@@ -29,7 +30,7 @@ void draw() {
 }
 
 void mousePressed() {
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < dotX.length; i++) {
     float distance = dist(mouseX, mouseY, dotX[i], dotY[i]);
     if (distance < dotSize / 2) {
       score++;
@@ -41,7 +42,7 @@ void mousePressed() {
 }
 
 void newDot() {
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < dotX.length; i++) {
     dotX[i] = random(width);
     dotY[i] = random(height);
   }

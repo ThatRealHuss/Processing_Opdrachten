@@ -1,5 +1,5 @@
 float dotX[] = new float[8];
-float dotY[] = new float[5];
+float dotY[] = new float[8];
 float dotSize = 20;
 float speed = 3;
 int score = 0;
